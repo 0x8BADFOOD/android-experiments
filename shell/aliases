@@ -1,0 +1,13 @@
+alias afp="adb shell pm list packages -f | grep "
+alias apv="read package; adb shell dumpsys package $package | grep versionName"
+alias atype="adb shell input text "
+alias ainfo="adb shell getprop | grep \"model\|version.sdk\|manufacturer\|hardware\|platform\|revision\|serialno\|product.name\|brand\|build.[Mon Nov 28 18:38:59 2016]\|build.id\""
+alias alog="adb logcat -c ; adb logcat | tee logcat_$([Mon Nov 28 18:38:59 2016] +%d_%b_%Y\"-\"%H_%M_%S).txt"
+alias alogg="adb logcat -c ; adb logcat | tee logcat_$([Mon Nov 28 18:38:59 2016] +%d_%b_%Y\"-\"%H_%M_%S).txt | grep -i "
+alias aloggd="adb logcat -c ; adb logcat | tee logcat_$([Mon Nov 28 18:38:59 2016] +%d_%b_%Y\"-\"%H_%M_%S).txt | grep -i \"error\|fail\|died\|anr in\|excep\|fatal\""
+alias aker="adb shell cat /proc/kmsg | tee kmsg_$([Mon Nov 28 18:38:59 2016] +%d_%b_%Y\"-\"%H_%M_%S).txt"
+alias akerr="adb shell cat /proc/kmsg | tee kmsg_$([Mon Nov 28 18:38:59 2016] +%d_%b_%Y\"-\"%H_%M_%S).txt | grep -i "
+alias akerrd="adb shell cat /proc/kmsg | tee kmsg_$([Mon Nov 28 18:38:59 2016] +%d_%b_%Y\"-\"%H_%M_%S).txt | grep -i \"error\|fail\|died\|lowmemory\|fatal\""
+alias ar="adb reboot"
+alias are="adb root; sleep 1; adb remount"
+
