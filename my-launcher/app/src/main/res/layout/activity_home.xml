@@ -8,8 +8,8 @@
     <EditText
         android:id="@+id/search"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
+        android:layout_height="wrap_content"
+        android:inputType="">
         <requestFocus />
     </EditText>
 
@@ -17,20 +17,19 @@
         android:id="@+id/search_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/search" />
-    <Button
+        android:layout_below="@+id/search"
+        android:visibility="invisible" />
 
-        android:text="000"
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="44dp"
         android:id="@+id/button"
-        android:background="@android:color/holo_orange_dark"
+        android:background="@mipmap/apps_icon_96"
         android:elevation="0dp"
-        android:textSize="30sp"
         android:onClick="openList"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
 
