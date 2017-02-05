@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MotionEventCompat;
 import android.text.Editable;
@@ -26,7 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
 import static android.R.attr.data;
@@ -38,7 +42,8 @@ public class HomeActivity extends Activity
     public static final String DEBUG_TAG = "XXX";
     private PackageManager manager;
     private List<AppInfo> apps;
-
+    private AppListAdapter adapter;
+    private ListView list;
 
     private GestureDetectorCompat mDetector;
 
@@ -59,10 +64,10 @@ public class HomeActivity extends Activity
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
                 String text = textView.getText().toString().toLowerCase(Locale.getDefault());
-//                adapter.filter(text);
+                Log.d(DEBUG_TAG,"afterTextChanged -> " + text);
+                adapter.filter(text);
                 if (text.equals("")){
                     list.setVisibility(View.GONE);
-//                    hideSoftKeyboard(textView);
                 }else{
                     list.setVisibility(View.VISIBLE);
                 }
@@ -84,7 +89,7 @@ public class HomeActivity extends Activity
 
 
         loadApps();
-        loadListView();
+        loadListView2();
         list.setVisibility(View.GONE);
         textView.setVisibility(View.GONE);
 
@@ -168,13 +173,15 @@ public class HomeActivity extends Activity
             apps.add(app);
         }
     }
-    private ListView list;
     private void loadListView(){
         list = (ListView)findViewById(R.id.search_listview);
 
-        ArrayAdapter<AppInfo> adapter = new ArrayAdapter<AppInfo>(this,
-                R.layout.list_item,
-                apps) {
+//        ArrayAdapter<AppInfo> adapter = new ArrayAdapter<AppInfo>(this,
+//                R.layout.list_item,
+//                apps) {
+            ArrayAdapter<AppInfo> adapter = new ArrayAdapter<AppInfo>(this,
+                    R.layout.list_item,
+                    apps) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if(convertView == null){
@@ -195,6 +202,19 @@ public class HomeActivity extends Activity
         };
 
         list.setAdapter(adapter);
+    }
+    private void loadListView2(){
+        list = (ListView)findViewById(R.id.search_listview);
+
+        adapter = new AppListAdapter(this,apps);
+        list.setAdapter(adapter);
+
+
+//        ArrayAdapter<AppInfo> adapter = new ArrayAdapter<AppInfo>(this,
+//                R.layout.list_item,
+//                apps) {
+
+//        list.setAdapter(adapter);
     }
     private void addClickListener(){
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
