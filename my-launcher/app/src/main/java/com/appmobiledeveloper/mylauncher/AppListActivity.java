@@ -20,6 +20,7 @@ public class AppListActivity extends Activity {
 
     private PackageManager manager;
     private List<AppInfo> apps;
+    private ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,6 @@ public class AppListActivity extends Activity {
             apps.add(app);
         }
     }
-    private ListView list;
     private void loadListView(){
         list = (ListView)findViewById(R.id.apps_list);
 
