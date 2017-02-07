@@ -32,7 +32,6 @@ public class AppListActivity extends Activity {
         addClickListener();
     }
 
-
     private void loadApps(){
         manager = getPackageManager();
         apps = new ArrayList<AppInfo >();

@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by grigorynovikov on 2/8/17.
- */
-
 public class AppListAdapter  extends BaseAdapter {
 
     // Declare Variables
@@ -92,14 +88,6 @@ public class AppListAdapter  extends BaseAdapter {
             public void onClick(View arg0) {
                 // Send single item click data to SingleItemView Class
                 Intent intent = new Intent(mContext, AppInfo.class);
-                // Pass all data rank
-//                intent.putExtra("rank",(worldpopulationlist.get(position).getRank()));
-//                // Pass all data country
-//                intent.putExtra("country",(worldpopulationlist.get(position).getCountry()));
-//                // Pass all data population
-//                intent.putExtra("population",(worldpopulationlist.get(position).getPopulation()));
-                // Pass all data flag
-                // Start SingleItemView Class
                 mContext.startActivity(intent);
             }
         });
