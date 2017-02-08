@@ -1,15 +1,11 @@
 package com.appmobiledeveloper.mylauncher;
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MotionEventCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,31 +16,23 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
-
-import static android.R.attr.data;
 
 public class HomeActivity extends Activity
         implements GestureDetector.OnGestureListener
 {
-
-    public static final String DEBUG_TAG = "XXX";
+    public static final String DEBUG_TAG = "HomeActivity";
     private PackageManager manager;
     private List<AppInfo> apps;
     private AppListAdapter adapter;
     private ListView list;
-
     private GestureDetectorCompat mDetector;
 
     private TextView textView;
@@ -227,13 +215,6 @@ public class HomeActivity extends Activity
         });
     }
 
-
-
-   /////
-    /////
-    /////
-    /////
-
     @Override
     public boolean onTouchEvent(MotionEvent event){
         this.mDetector.onTouchEvent(event);
@@ -243,20 +224,17 @@ public class HomeActivity extends Activity
 
     @Override
     public boolean onDown(MotionEvent event) {
-//        Log.d(DEBUG_TAG,"onDown: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
-//        Log.d(DEBUG_TAG, "onFling: " + event1.toString()+event2.toString());
         return true;
     }
 
     @Override
     public void onLongPress(MotionEvent event) {
-//        Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
     }
 
     @Override
@@ -267,51 +245,28 @@ public class HomeActivity extends Activity
                 Toast.LENGTH_LONG).show();
         textView.setVisibility(View.VISIBLE);
         textView.requestFocus();
-        s();
+        showKeyBoard();
         return true;
     }
 
     @Override
     public void onShowPress(MotionEvent event) {
-//        Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
     }
 
     @Override
     public boolean onSingleTapUp(MotionEvent event) {
-        h();
+        hideKeyBoard();
         textView.setVisibility(View.GONE);
-//        hideKeyboard();
-//        hideSoftKeyboard(textView);
-//        Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
         return true;
     }
 
-//    @Override
-//    public boolean onDoubleTap(MotionEvent event) {
-//        Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onDoubleTapEvent(MotionEvent event) {
-//        Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onSingleTapConfirmed(MotionEvent event) {
-//        Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
-//        return true;
-//    }
-
-
-    public void  s(){
+    public void showKeyBoard(){
         InputMethodManager imm = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(textView, InputMethodManager.SHOW_IMPLICIT);
     }
 
-    public void h(){
+    public void hideKeyBoard(){
         InputMethodManager imm = (InputMethodManager)
         getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);

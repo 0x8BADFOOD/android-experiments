@@ -15,7 +15,6 @@ import java.util.Locale;
 
 public class AppListAdapter  extends BaseAdapter {
 
-    // Declare Variables
     Context mContext;
     LayoutInflater inflater;
     List<AppInfo> apps;
@@ -26,11 +25,6 @@ public class AppListAdapter  extends BaseAdapter {
         inflater = LayoutInflater.from(mContext);
         arrayList  = new ArrayList<AppInfo>(appInfos);
         arrayList.addAll(apps);
-    }
-
-    public class ViewHolder {
-        TextView label;
-        TextView name;
     }
 
     @Override
@@ -64,25 +58,7 @@ public class AppListAdapter  extends BaseAdapter {
         TextView appName = (TextView)view.findViewById(R.id.item_app_name);
         appName.setText(apps.get(position).packageName);
 
-
-//        final ViewHolder holder;
-//        if (view == null) {
-//            holder = new ViewHolder();
-//            view = inflater.inflate(R.layout.list_item, null);
-//            // Locate the TextViews in listview_item.xml
-//            holder.label= (TextView) view.findViewById(R.id.item_app_label);
-//            holder.name= (TextView) view.findViewById(R.id.item_app_name);
-//            view.setTag(holder);
-//        } else {
-//            holder = (ViewHolder) view.getTag();
-//        }
-//        // Set the results into TextViews
-//        holder.label.setText(worldpopulationlist.get(position));
-//        holder.name.setText(worldpopulationlist.get(position).getCountry());
-//        holder.population.setText(worldpopulationlist.get(position).getPopulation());
-
-        // Listen for ListView Item Click
-        view.setOnClickListener(new View.OnClickListener() {
+       view.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -95,11 +71,9 @@ public class AppListAdapter  extends BaseAdapter {
         return view;
     }
 
-    // Filter Class
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
         apps.clear();
-//        Log.d(DEBUG_TAG,"onDown: " + event.toString());
         if (charText.length() == 0) {
             apps.addAll(arrayList);
         }
